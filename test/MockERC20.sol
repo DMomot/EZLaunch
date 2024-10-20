@@ -4,16 +4,18 @@ pragma solidity ^0.8.28;
 import "openzeppelin-contracts/contracts/token/ERC20/IERC20.sol";
 
 contract MockERC20 is IERC20 {
-    string public name = "Mock Token";
-    string public symbol = "MTK";
+    string public name;
+    string public symbol;
     uint8 public decimals = 18;
     uint256 public totalSupply;
 
     mapping(address => uint256) balances;
     mapping(address => mapping(address => uint256)) allowances;
 
-    constructor(uint256 initialSupply) {
+    constructor(uint256 initialSupply, string memory _name, string memory _symbol) {
         totalSupply = initialSupply;
+        name = _name;
+        symbol = _symbol;
         balances[msg.sender] = initialSupply;
     }
 
